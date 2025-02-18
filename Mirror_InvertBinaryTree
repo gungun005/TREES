@@ -1,0 +1,27 @@
+class Solution {
+public:
+bool checkswaps(TreeNode* root)
+{
+    if(root==NULL)
+    {
+        return true;
+    }
+    if(root->left==NULL && root->right==NULL)
+    {
+        return true;
+    }
+    bool leftsubtree=checkswaps(root->left);
+    bool rightsubtree=checkswaps(root->right);
+    if(root->left || root->right && leftsubtree ||rightsubtree)
+    {
+        swap(root->right,root->left);
+        return true;
+    }
+    return false;
+}
+    TreeNode* invertTree(TreeNode* root) {
+        bool ans=checkswaps(root);
+        // cout<<ans<<endl;
+        return root;
+    }
+};
